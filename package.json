@@ -1,0 +1,32 @@
+{
+  "name": "standapisupport",
+  "displayName": "standapisupport",
+  "description": "",
+  "publisher":"ss123she",
+  "version": "0.0.2",
+  "engines": {
+    "vscode": "^1.73.0"
+  },
+  "keywords":["Stand","Lua"],
+  "categories": [
+    "Snippets"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "lua",
+        "path": "./snippets/snippets.code-snippets"
+      }
+    ]
+  },
+  "icon": "images/logo.png",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "bugs": {
+    "url": "https://github.com/ss123she/standapisupport/blob/main/LICENSE"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ss123she/standapisupport.git"
+  },
+  "homepage": "https://github.com/ss123she/"
+}
