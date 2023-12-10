@@ -1,113 +1,140 @@
 {
     "description": "Stand API for VS Code",
-    
+
     // MENU snippets
     "menu.my_root": {
-      "prefix": ["menu.my_root", "my_root"],
-      "body": [
-        "menu.my_root()"
-      ],
-      "description": "Returns a reference to the list that your script gets when it is started."
-    }
+        "prefix": ["menu.my_root", "my_root"],
+        "body": [
+            "menu.my_root()"
+        ],
+        "description": "Returns a reference to the list that your script gets when it is started."
+    },
     "menu.player_root": {
         "prefix": ["menu.player_root", "player_root"],
         "body": [
-            "menu.player_root(${1:player_id})"
+            "menu.player_root(\"$1\")"
         ],
         "description": "Returns a reference to the list that the given player owns. Note that the returned reference may be invalid even if called in an on_join handler."
-    }
+    },
     "menu.shadow_root": {
         "prefix": ["menu.shadow_root", "shadow_root"],
         "body": [
             "menu.shadow_root()"
         ],
-        "description": "Returns a reference to the list that the given player owns. Note that the returned reference may be invalid even if called in an on_join handler."
-    }
+        "description": "Using return value of this function to create a command produces a detached command (CommandUniqPtr) instead of a CommandRef."
+    },
     "menu.ref_by_path": {
         "prefix": ["menu.ref_by_path", "ref_by_path"],
         "body": [
-            "menu.ref_by_path(${1:path}, ${2:?int tree_version = nil})"
+            "menu.ref_by_path(\"$1\", \"$2\")"
         ],
-        "description": "Returns a reference to any command in Stand using a path such as Self>Immortality. Note that the path has to be in English (UK) and using the no-space greater-than separator. Providing a tree version is optional but highly recommended for future-proofing. You can find this in any tree config file, such as your profile."
+        "description": "Returns a reference to any command in Stand using a path such as Self>Immortality. Note that the path has to be in English (UK) and using the no-space greater-than separator.\n\nProviding a tree version is optional but highly recommended for future-proofing. You can find this in any tree config file, such as your profile."
     }
+    "menu.shadow_root": {
+        "prefix": ["menu.shadow_root"],
+        "body": [
+            "menu.shadow_root()"
+        ],
+        "description": "Using return value of this function to create a command produces a detached command (CommandUniqPtr) instead of a CommandRef."
+    },
+
+    "menu.ref_by_path": {
+        "prefix": ["menu.ref_by_path"],
+        "body": [
+            "menu.ref_by_path(\"$1\", \"$2\")"
+        ],
+        "description": "Returns a reference to any command in Stand using a path such as Self>Immortality. Note that the path has to be in English (UK) and using the no-space greater-than separator.\n\nProviding a tree version is optional but highly recommended for future-proofing. You can find this in any tree config file, such as your profile."
+    },
+
     "menu.ref_by_rel_path": {
-        "prefix": ["menu.ref_by_rel_path", "ref_by_rel_path"],
+        "prefix": ["menu.ref_by_rel_path"],
         "body": [
-            "menu.ref_by_rel_path(${1:base}, ${2:path})"
+            "menu.ref_by_rel_path(\"$1\", \"$2\")"
         ],
-    }
+    },
+
     "menu.ref_by_command_name": {
-        "prefix": ["menu.ref_by_command_name", "ref_by_command_name"],
+        "prefix": ["menu.ref_by_command_name"],
         "body": [
-            "menu.ref_by_command_name(${1:command_name})"
+            "menu.ref_by_command_name(\"$1\")"
         ],
-    }
+    },
+
     "menu.list": {
-        "prefix": ["menu.list", "list"],
+        "prefix": ["menu.list"],
         "body": [
-            "menu.list(${1:CommandRef parent}, ${2:Label menu_name}, ${3:table<any, string> command_names = {}}, ${4:Label help_text = ''}, ${5:function on_click = nil}, ${6:function on_back = nil}, ${7:function on_active_list_update = nil})"
+            "menu.list(\"$1\", \"$2\", $3, \"$4\", $5, $6, $7)"
         ],
-    }
+    },
+
     "menu.action": {
-        "prefix": ["menu.action", "action"],
+        "prefix": ["menu.action"],
         "body": [
-            "menu.action(${1:CommandRef parent}, ${2:Label menu_name}, ${3:table<any, string> command_names}, ${4:Label help_text}, ${5:function on_click}, ${6:?function on_command = nil}, ${7:?string syntax = nil}, ${8:int perm = COMMANDPERM_USERONLY})"
+            "menu.action(\"$1\", \"$2\", $3, \"$4\", $5, $6, \"$7\", $8)"
         ],
-    }
+    },
+
     "menu.toggle": {
-        "prefix": ["menu.toggle", "toggle"],
+        "prefix": ["menu.toggle"],
         "body": [
-            "menu.toggle(${1:CommandRef parent}, ${2:Label menu_name}, ${3:table<any, string> command_names}, ${4:Label help_text}, ${5:function on_change}, ${6:bool default_on = false})"
+            "menu.toggle(\"$1\", \"$2\", $3, \"$4\", $5, $6)"
         ],
         "description": "Your on_change function will be called with on and click_type."
-    }
+    },
+
     "menu.toggle_loop": {
-        "prefix": ["menu.toggle_loop", "toggle_loop"],
+        "prefix": ["menu.toggle_loop"],
         "body": [
-            "menu.toggle_loop(${1:CommandRef parent}, ${2:Label menu_name}, ${3:table<any, string> command_names}, ${4:Label help_text}, ${5:function on_tick}, ${6:?function on_stop = nil})"
+            "menu.toggle_loop(\"$1\", \"$2\", $3, \"$4\", $5, $6)"
         ],
         "description": "Your on_tick function will be called every tick that the toggle is checked; you should not call util.yield in this context."
-    }
+    },
+
     "menu.slider": {
-        "prefix": ["menu.slider", "slider"],
+        "prefix": ["menu.slider"],
         "body": [
-            "menu.slider(${1:parent}, ${2:menu_name}, ${3:table<any, string> command_names}, ${4:help_text}, ${5:min_value}, ${6:max_value}, ${7:default_value}, ${8:step_size}, ${9:on_change})"
+            "menu.slider(\"$1\", \"$2\", $3, \"$4\", $5, $6, $7, $8, $9)"
         ],
         "description": "Your on_change function will be called with value, prev_value and click_type."
     },
+
     "menu.slider_float": {
-        "prefix": ["menu.slider_float", "slider_float"],
+        "prefix": ["menu.slider_float"],
         "body": [
-            "menu.slider_float(${1:parent}, ${2:menu_name}, ${3:table<any, string> command_names}, ${4:help_text}, ${5:min_value}, ${6:max_value}, ${7:default_value}, ${8:step_size}, ${9:on_change})"
+            "menu.slider_float(\"$1\", \"$2\", $3, \"$4\", $5, $6, $7, $8, $9)"
         ],
         "description": "Your on_change function will be called with value, prev_value and click_type. (float variant)"
     },
+
     "menu.click_slider": {
-        "prefix": ["menu.click_slider", "click_slider"],
+        "prefix": ["menu.click_slider"],
         "body": [
-            "menu.click_slider(${1:parent}, ${2:menu_name}, ${3:table<any, string> command_names}, ${4:help_text}, ${5:min_value}, ${6:max_value}, ${7:default_value}, ${8:step_size}, ${9:on_click})"
+            "menu.click_slider(\"$1\", \"$2\", $3, \"$4\", $5, $6, $7, $8, $9)"
         ],
         "description": "Your on_click function will be called with value and click_type."
     },
+
     "menu.click_slider_float": {
-        "prefix": ["menu.click_slider_float", "click_slider_float"],
+        "prefix": ["menu.click_slider_float"],
         "body": [
-            "menu.click_slider_float(${1:parent}, ${2:menu_name}, ${3:table<any, string> command_names}, ${4:help_text}, ${5:min_value}, ${6:max_value}, ${7:default_value}, ${8:step_size}, ${9:on_click})"
+            "menu.click_slider_float(\"$1\", \"$2\", $3, \"$4\", $5, $6, $7, $8, $9)"
         ],
         "description": "Your on_click function will be called with value and click_type. (float variant)"
     },
+
     "menu.list_select": {
-        "prefix": ["menu.list_select", "list_select"],
+        "prefix": ["menu.list_select"],
         "body": [
-            "menu.list_select(${1:parent}, ${2:menu_name}, ${3:table<any, string> command_names}, ${4:help_text}, ${5:table<int, table> options}, ${6:default_value}, ${7:on_change})"
+            "menu.list_select(\"$1\", \"$2\", $3, \"$4\", $5, $6, $7)"
         ],
         "description": "Your on_change function will be called with the option's value, menu_name, previous option's value, and click_type."
     },
+
     "menu.list_action": {
-        "prefix": ["menu.list_action", "list_action"],
+        "prefix": ["menu.list_action"],
         "body": [
-            "menu.list_action(${1:parent}, ${2:menu_name}, ${3:table<any, string> command_names}, ${4:help_text}, ${5:table<int, table> options}, ${6:on_item_click})"
+            "menu.list_action(\"$1\", \"$2\", $3, \"$4\", $5, $6)"
         ],
         "description": "List action item data is an index-based table that contains value, menu_name, command_names, help_text, and category. Your on_item_click function will be called with the selected option's value and menu_name."
     }
-    
+}
