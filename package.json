@@ -19,11 +19,6 @@
       }
     ]
   },
-  "icon": "images/logo.png",
-  "license": "SEE LICENSE IN LICENSE.txt",
-  "bugs": {
-    "url": "https://github.com/ss123she/standapisupport/blob/main/LICENSE"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ss123she/standapisupport.git"

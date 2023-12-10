@@ -1,3 +1,106 @@
 {
-    "description": "Stand API for VS Code"
-}
+    "description": "Stand API for VS Code",
+    
+    // MENU snippets
+    "menu.my_root": {
+      "prefix": ["menu.my_root", "my_root"],
+      "body": [
+        "menu.my_root()"
+      ],
+      "description": "Returns a reference to the list that your script gets when it is started."
+    }
+    "menu.player_root": {
+        "prefix": ["menu.player_root", "player_root"],
+        "body": [
+            "menu.player_root(${1:player_id})"
+        ],
+        "description": "Returns a reference to the list that the given player owns. Note that the returned reference may be invalid even if called in an on_join handler."
+    }
+    "menu.shadow_root": {
+        "prefix": ["menu.shadow_root", "shadow_root"],
+        "body": [
+            "menu.shadow_root()"
+        ],
+        "description": "Returns a reference to the list that the given player owns. Note that the returned reference may be invalid even if called in an on_join handler."
+    }
+    "menu.ref_by_path": {
+        "prefix": ["menu.ref_by_path", "ref_by_path"],
+        "body": [
+            "menu.ref_by_path(${1:path}, ${2:?int tree_version = nil})"
+        ],
+        "description": "Returns a reference to any command in Stand using a path such as Self>Immortality. Note that the path has to be in English (UK) and using the no-space greater-than separator. Providing a tree version is optional but highly recommended for future-proofing. You can find this in any tree config file, such as your profile."
+    }
+    "menu.ref_by_rel_path": {
+        "prefix": ["menu.ref_by_rel_path", "ref_by_rel_path"],
+        "body": [
+            "menu.ref_by_rel_path(${1:base}, ${2:path})"
+        ],
+    }
+    "menu.ref_by_command_name": {
+        "prefix": ["menu.ref_by_command_name", "ref_by_command_name"],
+        "body": [
+            "menu.ref_by_command_name(${1:command_name})"
+        ],
+    }
+    "menu.list": {
+        "prefix": ["menu.list", "list"],
+        "body": [
+            "menu.list(${1:CommandRef parent}, ${2:Label menu_name}, ${3:table<any, string> command_names = {}}, ${4:Label help_text = ''}, ${5:function on_click = nil}, ${6:function on_back = nil}, ${7:function on_active_list_update = nil})"
+        ],
+    }
+    "menu.action": {
+        "prefix": ["menu.action", "action"],
+        "body": [
+            "menu.action(${1:CommandRef parent}, ${2:Label menu_name}, ${3:table<any, string> command_names}, ${4:Label help_text}, ${5:function on_click}, ${6:?function on_command = nil}, ${7:?string syntax = nil}, ${8:int perm = COMMANDPERM_USERONLY})"
+        ],
+    }
+    "menu.toggle": {
+        "prefix": ["menu.toggle", "toggle"],
+        "body": [
+            "menu.toggle(${1:CommandRef parent}, ${2:Label menu_name}, ${3:table<any, string> command_names}, ${4:Label help_text}, ${5:function on_change}, ${6:bool default_on = false})"
+        ],
+        "description": "Your on_change function will be called with on and click_type."
+    }
+    "menu.toggle_loop": {
+        "prefix": ["menu.toggle_loop", "toggle_loop"],
+        "body": [
+            "menu.toggle_loop(${1:CommandRef parent}, ${2:Label menu_name}, ${3:table<any, string> command_names}, ${4:Label help_text}, ${5:function on_tick}, ${6:?function on_stop = nil})"
+        ],
+        "description": "Your on_tick function will be called every tick that the toggle is checked; you should not call util.yield in this context."
+    }
+    "menu.slider": {
+        "prefix": ["menu.slider", "slider"],
+        "body": [
+            "CommandRef|CommandUniqPtr menu.slider(CommandRef parent, Label menu_name, table<any, string> command_names, Label help_text, int min_value, int max_value, int default_value, int step_size, function on_change)"
+        ],
+        "description": "Creates a slider menu with the specified parameters. on_change function will be called with value, prev_value and click_type."
+    }
+    "menu.slider_float": {
+        "prefix": ["menu.slider_float", "slider_float"],
+        "body": [
+            "CommandRef|CommandUniqPtr menu.slider_float(CommandRef parent, Label menu_name, table<any, string> command_names, Label help_text, int min_value, int max_value, int default_value, int step_size, function on_change)"
+        ],
+        "description": "Creates a floating-point slider menu with the specified parameters. on_change function will be called with value, prev_value and click_type."
+    }
+    "menu.click_slider": {
+        "prefix": ["menu.click_slider", "click_slider"],
+        "body": [
+            "CommandRef|CommandUniqPtr menu.click_slider(CommandRef parent, Label menu_name, table<any, string> command_names, Label help_text, int min_value, int max_value, int default_value, int step_size, function on_click)"
+        ],
+        "description": "Creates a clickable slider menu with the specified parameters. on_click function will be called with value, prev_value and click_type."
+    }
+    "menu.click_slider_float": {
+        "prefix": ["menu.click_slider_float", "click_slider_float"],
+        "body": [
+            "CommandRef|CommandUniqPtr menu.click_slider_float(CommandRef parent, Label menu_name, table<any, string> command_names, Label help_text, int min_value, int max_value, int default_value, int step_size, function on_click)"
+        ],
+        "description": "Creates a clickable floating-point slider menu with the specified parameters. on_click function will be called with value and click_type."
+    }
+    "menu.list_select": {
+        "prefix": ["menu.list_select", "list_select"],
+        "body": [
+            "CommandRef|CommandUniqPtr menu.list_select(CommandRef parent, Label menu_name, table<any, string> command_names, Label help_text, table<int, table> options, int default_value, function on_change)"
+        ],
+        "description": "Creates a list selection menu with the specified parameters. on_change function will be called with value."
+    }
+  }
