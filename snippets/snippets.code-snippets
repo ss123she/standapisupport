@@ -3,138 +3,573 @@
 
     // MENU snippets
     "menu.my_root": {
-        "prefix": ["menu.my_root", "my_root"],
+        "prefix": ["menu.my_root"],
         "body": [
-            "menu.my_root()"
+          "menu.my_root()"
         ],
         "description": "Returns a reference to the list that your script gets when it is started."
-    },
+      },
     "menu.player_root": {
-        "prefix": ["menu.player_root", "player_root"],
+        "prefix": ["menu.player_root"],
         "body": [
-            "menu.player_root(\"$1\")"
+          "player_root(int player_id);"
         ],
         "description": "Returns a reference to the list that the given player owns. Note that the returned reference may be invalid even if called in an on_join handler."
-    },
-    "menu.shadow_root": {
-        "prefix": ["menu.shadow_root", "shadow_root"],
-        "body": [
-            "menu.shadow_root()"
-        ],
-        "description": "Using return value of this function to create a command produces a detached command (CommandUniqPtr) instead of a CommandRef."
-    },
-    "menu.ref_by_path": {
-        "prefix": ["menu.ref_by_path", "ref_by_path"],
-        "body": [
-            "menu.ref_by_path(\"$1\", \"$2\")"
-        ],
-        "description": "Returns a reference to any command in Stand using a path such as Self>Immortality. Note that the path has to be in English (UK) and using the no-space greater-than separator.\n\nProviding a tree version is optional but highly recommended for future-proofing. You can find this in any tree config file, such as your profile."
     }
     "menu.shadow_root": {
         "prefix": ["menu.shadow_root"],
         "body": [
-            "menu.shadow_root()"
+          "menu.shadow_root()"
         ],
         "description": "Using return value of this function to create a command produces a detached command (CommandUniqPtr) instead of a CommandRef."
     },
-
+      
     "menu.ref_by_path": {
         "prefix": ["menu.ref_by_path"],
         "body": [
-            "menu.ref_by_path(\"$1\", \"$2\")"
+          "menu.ref_by_path(path, tree_version)"
         ],
-        "description": "Returns a reference to any command in Stand using a path such as Self>Immortality. Note that the path has to be in English (UK) and using the no-space greater-than separator.\n\nProviding a tree version is optional but highly recommended for future-proofing. You can find this in any tree config file, such as your profile."
+        "description": "Returns a reference to any command in Stand using a path such as Self>Immortality. Note that the path has to be in English (UK) and using the no-space greater-than separator. Providing a tree version is optional but highly recommended for future-proofing. You can find this in any tree config file, such as your profile."
     },
-
+      
     "menu.ref_by_rel_path": {
         "prefix": ["menu.ref_by_rel_path"],
         "body": [
-            "menu.ref_by_rel_path(\"$1\", \"$2\")"
+          "menu.ref_by_rel_path(base, path)"
         ],
+        "description": null
     },
-
+      
     "menu.ref_by_command_name": {
         "prefix": ["menu.ref_by_command_name"],
         "body": [
-            "menu.ref_by_command_name(\"$1\")"
+          "menu.ref_by_command_name(command_name)"
         ],
+        "description": null
     },
-
+      
     "menu.list": {
         "prefix": ["menu.list"],
         "body": [
-            "menu.list(\"$1\", \"$2\", $3, \"$4\", $5, $6, $7)"
+          "menu.list(parent, menu_name, command_names, help_text, on_click, on_back, on_active_list_update)"
         ],
+        "description": null
     },
-
+      
     "menu.action": {
         "prefix": ["menu.action"],
         "body": [
-            "menu.action(\"$1\", \"$2\", $3, \"$4\", $5, $6, \"$7\", $8)"
+          "menu.action(parent, menu_name, command_names, help_text, on_click, on_command, syntax, perm)"
         ],
+        "description": null
     },
-
     "menu.toggle": {
         "prefix": ["menu.toggle"],
         "body": [
-            "menu.toggle(\"$1\", \"$2\", $3, \"$4\", $5, $6)"
+          "menu.toggle(parent, menu_name, command_names, help_text, on_change, default_on = false)"
         ],
-        "description": "Your on_change function will be called with on and click_type."
+        "description": "Toggle menu item."
     },
-
+      
     "menu.toggle_loop": {
         "prefix": ["menu.toggle_loop"],
         "body": [
-            "menu.toggle_loop(\"$1\", \"$2\", $3, \"$4\", $5, $6)"
+          "menu.toggle_loop(parent, menu_name, command_names, help_text, on_tick, on_stop = nil)"
         ],
-        "description": "Your on_tick function will be called every tick that the toggle is checked; you should not call util.yield in this context."
+        "description": "Toggle menu item with continuous loop."
     },
-
+      
     "menu.slider": {
         "prefix": ["menu.slider"],
         "body": [
-            "menu.slider(\"$1\", \"$2\", $3, \"$4\", $5, $6, $7, $8, $9)"
+          "menu.slider(parent, menu_name, command_names, help_text, min_value, max_value, default_value, step_size, on_change)"
         ],
-        "description": "Your on_change function will be called with value, prev_value and click_type."
+        "description": "Slider menu item (integer values)."
     },
-
+      
     "menu.slider_float": {
         "prefix": ["menu.slider_float"],
         "body": [
-            "menu.slider_float(\"$1\", \"$2\", $3, \"$4\", $5, $6, $7, $8, $9)"
+          "menu.slider_float(parent, menu_name, command_names, help_text, min_value, max_value, default_value, step_size, on_change)"
         ],
-        "description": "Your on_change function will be called with value, prev_value and click_type. (float variant)"
+        "description": "Slider menu item (float values)."
     },
-
+      
     "menu.click_slider": {
         "prefix": ["menu.click_slider"],
         "body": [
-            "menu.click_slider(\"$1\", \"$2\", $3, \"$4\", $5, $6, $7, $8, $9)"
+          "menu.click_slider(parent, menu_name, command_names, help_text, min_value, max_value, default_value, step_size, on_click)"
         ],
-        "description": "Your on_click function will be called with value and click_type."
+        "description": "Clickable slider menu item (integer values)."
     },
-
+      
     "menu.click_slider_float": {
         "prefix": ["menu.click_slider_float"],
         "body": [
-            "menu.click_slider_float(\"$1\", \"$2\", $3, \"$4\", $5, $6, $7, $8, $9)"
+          "menu.click_slider_float(parent, menu_name, command_names, help_text, min_value, max_value, default_value, step_size, on_click)"
         ],
-        "description": "Your on_click function will be called with value and click_type. (float variant)"
+        "description": "Clickable slider menu item (float values)."
     },
-
+      
     "menu.list_select": {
         "prefix": ["menu.list_select"],
         "body": [
-            "menu.list_select(\"$1\", \"$2\", $3, \"$4\", $5, $6, $7)"
+          "menu.list_select(parent, menu_name, command_names, help_text, options, default_value, on_change)"
         ],
-        "description": "Your on_change function will be called with the option's value, menu_name, previous option's value, and click_type."
+        "description": "List selection menu item."
     },
-
     "menu.list_action": {
         "prefix": ["menu.list_action"],
         "body": [
-            "menu.list_action(\"$1\", \"$2\", $3, \"$4\", $5, $6)"
+          "menu.list_action(parent, menu_name, command_names, help_text, options, on_item_click)"
         ],
-        "description": "List action item data is an index-based table that contains value, menu_name, command_names, help_text, and category. Your on_item_click function will be called with the selected option's value and menu_name."
-    }
-}
+        "description": "List action menu item. Options must be a table of list action item data. List action item data is an index-based table that contains value, menu_name, command_names, help_text, and category. Value and menu_name are mandatory. Your on_item_click function will be called when a list item is clicked."
+    },
+    "menu.text_input": {
+        "prefix": ["menu.text_input"],
+        "body": [
+          "menu.text_input(parent, menu_name, command_names, help_text, on_change, default_value = \"\")"
+        ],
+        "description": "Text input menu item. Your on_change function will be called with the string and click type."
+    },
+      
+    "menu.colour": {
+        "prefix": ["menu.colour"],
+        "body": [
+          "menu.colour(parent, menu_name, command_names, help_text, default, transparency, on_change)",
+          // OR
+          "menu.colour(parent, menu_name, command_names, help_text, default_r, default_g, default_b, default_a, transparency, on_change)"
+        ],
+        "description": "Colour picker menu item. Your on_change function will be called with the selected colour and click type. Default can be either a Colour type or individual RGBA components."
+    },
+    "menu.rainbow": {
+        "prefix": ["menu.rainbow"],
+        "body": [
+          "menu.rainbow(colour_command)"
+        ],
+        "description": "Creates a rainbow slider for the given colour command. This should be called right after creating the colour command."
+    },
+      
+    "menu.inline_rainbow": {
+        "prefix": ["menu.inline_rainbow"],
+        "body": [
+          "menu.inline_rainbow(colour_command)"
+        ],
+        "description": "Creates a rainbow slider inside the given colour command. This should be called right after creating the colour command."
+    },
+      
+    "menu.divider": {
+        "prefix": ["menu.divider"],
+        "body": [
+          "menu.divider(parent, menu_name)"
+        ],
+        "description": "Creates a divider menu item."
+    },
+      
+    "menu.readonly": {
+        "prefix": ["menu.readonly"],
+        "body": [
+          "menu.readonly(parent, menu_name, value = \"\")"
+        ],
+        "description": "Creates a readonly menu item. Pairs well with menu.on_tick_in_viewport and menu.set_value."
+    },
+      
+    "menu.hyperlink": {
+        "prefix": ["menu.hyperlink"],
+        "body": [
+          "menu.hyperlink(parent, menu_name, link, help_text = \"\")"
+        ],
+        "description": "Creates a hyperlink menu item."
+    },
+      
+    "menu.textslider": {
+        "prefix": ["menu.textslider"],
+        "body": [
+          "menu.textslider(parent, menu_name, command_names, help_text, options, on_click)"
+        ],
+        "description": "Creates a textslider menu item. Use menu.list_action instead, unless options are really unimportant. Your on_click function will be called with the option's index, value, and click_type as parameters."
+    },
+      
+    "menu.textslider_stateful": {
+        "prefix": ["menu.textslider_stateful"],
+        "body": [
+          "menu.textslider_stateful(parent, menu_name, command_names, help_text, options, on_click)"
+        ],
+        "description": "Creates a stateful textslider menu item. Use menu.list_select instead, unless options are really unimportant. Your on_click function will be called with the option's index, value, and click_type as parameters."
+    },
+      
+    "menu.player_list_players_shortcut": {
+        "prefix": ["menu.player_list_players_shortcut"],
+        "body": [
+          "menu.player_list_players_shortcut(parent, menu_name, command_name, single_only = false)"
+        ],
+        "description": "Creates a player list with shortcut menu item."
+    },
+      
+    "menu.link": {
+        "prefix": ["menu.link"],
+        "body": [
+          "menu.link(parent, target, show_address_in_corner = false)"
+        ],
+        "description": "Creates a link menu item."
+    },
+      
+    "menu.apply_command_states": {
+        "prefix": ["menu.apply_command_states"],
+        "body": [
+          "menu.apply_command_states()"
+        ],
+        "description": "Loads state & hotkeys for commands you've created without needing to yield. Note that your script is always expected to create all (stateful) commands within the first 100 ticks."
+    },
+      
+    "menu.delete": {
+        "prefix": ["menu.delete"],
+        "body": [
+          "menu.delete(command)"
+        ],
+        "description": "Deletes the specified command."
+    },
+      
+    "menu.replace": {
+        "prefix": ["menu.replace"],
+        "body": [
+          "menu.replace(old, new)"
+        ],
+        "description": "Replaces the specified old command with a new command."
+    },
+      
+    "menu.detach": {
+        "prefix": ["menu.detach"],
+        "body": [
+          "menu.detach(command)"
+        ],
+        "description": "Detaches the specified command."
+    },
+      
+    "menu.attach": {
+        "prefix": ["menu.attach"],
+        "body": [
+          "menu.attach(parent, command)"
+        ],
+        "description": "Attaches the specified command to the given parent."
+    },
+      
+    "menu.attach_after": {
+        "prefix": ["menu.attach_after"],
+        "body": [
+          "menu.attach_after(anchor, command)"
+        ],
+        "description": "Attaches the specified command after the given anchor."
+    },
+      
+    "menu.attach_before": {
+        "prefix": ["menu.attach_before"],
+        "body": [
+          "menu.attach_before(anchor, command)"
+        ],
+        "description": "Attaches the specified command before the given anchor."
+    },
+      
+    "menu.is_ref_valid": {
+        "prefix": ["menu.is_ref_valid"],
+        "body": [
+          "menu.is_ref_valid(ref)"
+        ],
+        "description": "Returns whether the referenced command still exists."
+    },
+      
+    "menu.focus": {
+        "prefix": ["menu.focus"],
+        "body": [
+          "menu.focus(command)"
+        ],
+        "description": "Focuses on the specified command."
+    },
+      
+    "menu.is_focused": {
+        "prefix": ["menu.is_focused"],
+        "body": [
+          "menu.is_focused(command)"
+        ],
+        "description": "Returns whether the specified command is currently focused."
+    },
+      
+    "menu.get_applicable_players": {
+      "prefix": ["menu.get_applicable_players"],
+      "body": [
+        "menu.get_applicable_players(command, include_user = nil)"
+      ],
+      "description": "Gets the applicable players for the specified command."
+    },
+    
+    "menu.get_parent": {
+        "prefix": ["menu.get_parent"],
+        "body": [
+          "menu.get_parent(command)"
+        ],
+        "description": "Gets the parent command of the specified command."
+    },  
+
+    "menu.get_type": {
+        "prefix": ["menu.get_type"],
+        "body": [
+          "menu.get_type(command)"
+        ],
+        "description": "Gets the type of the specified command. The type may equal one of the predefined values like COMMAND_LINK, COMMAND_ACTION, etc."
+    },  
+
+    "menu.get_children": {
+        "prefix": ["menu.get_children"],
+        "body": [
+          "menu.get_children(list)"
+        ],
+        "description": "Gets the children commands of the specified list command."
+    },  
+
+    "menu.list_get_focus": {
+        "prefix": ["menu.list_get_focus"],
+        "body": [
+          "menu.list_get_focus(list)"
+        ],
+        "description": "Gets the focus of the specified list command."
+    },  
+
+    "menu.list_get_focus_physical": {
+        "prefix": ["menu.list_get_focus_physical"],
+        "body": [
+          "menu.list_get_focus_physical(list)"
+        ],
+        "description": "Gets the physical focus of the specified list command."
+    },  
+
+    "menu.collect_garbage": {
+        "prefix": ["menu.collect_garbage"],
+        "body": [
+          "menu.collect_garbage()"
+        ],
+        "description": "Removes invalidated weakrefs from an internal vector. Stand does this automatically, but if you bulk-delete-or-replace commands, you might want to call this right after."
+    }   
+    "menu.is_open": {
+          "prefix": ["menu.is_open"],
+          "body": [
+            "menu.is_open()"
+          ],
+          "description": "Returns true if the menu is open, otherwise false."
+    },  
+
+    "menu.get_position": {
+        "prefix": ["menu.get_position"],
+        "body": [
+          "menu.get_position()"
+        ],
+        "description": "Returns the menu grid origin x & y as two values."
+    },  
+
+    "menu.get_main_view_position_and_size": {
+        "prefix": ["menu.get_main_view_position_and_size"],
+        "body": [
+          "menu.get_main_view_position_and_size()"
+        ],
+        "description": "Returns x, y, width, & height for the current main view (active list, warning, etc.)."
+    },  
+
+    "menu.get_current_menu_list": {
+        "prefix": ["menu.get_current_menu_list"],
+        "body": [
+          "menu.get_current_menu_list()"
+        ],
+        "description": "Returns a reference to the current menu list, which ignores the context menu."
+    },  
+
+    "menu.get_current_ui_list": {
+        "prefix": ["menu.get_current_ui_list"],
+        "body": [
+          "menu.get_current_ui_list()"
+        ],
+        "description": "Returns a reference to the current UI list, which can include the context menu."
+    },  
+
+    "menu.get_active_list_cursor_text": {
+        "prefix": ["menu.get_active_list_cursor_text"],
+        "body": [
+          "menu.get_active_list_cursor_text(even_when_disabled = false, even_when_inappropriate = false)"
+        ],
+        "description": "Returns the cursor text of the current UI list."
+    },  
+
+    "menu.are_tabs_visible": {
+        "prefix": ["menu.are_tabs_visible"],
+        "body": [
+          "menu.are_tabs_visible()"
+        ],
+        "description": "Returns true if tabs are visible, otherwise false."
+    },  
+
+    "menu.show_command_box": {
+        "prefix": ["menu.show_command_box"],
+        "body": [
+          "menu.show_command_box(prefill)"
+        ],
+        "description": "Opens the command box with the specified prefill text."
+    },  
+
+    "menu.show_command_box_click_based": {
+        "prefix": ["menu.show_command_box_click_based"],
+        "body": [
+          "menu.show_command_box_click_based(click_type, prefill)"
+        ],
+        "description": "Opens the command box with the specified prefill text based on the click type."
+    },  
+
+    "menu.trigger_commands": {
+        "prefix": ["menu.trigger_commands"],
+        "body": [
+          "menu.trigger_commands(input)"
+        ],
+        "description": "Triggers the specified commands using the provided input."
+    },  
+
+    "menu.trigger_command": {
+        "prefix": ["menu.trigger_command"],
+        "body": [
+          "menu.trigger_command(command, arg)"
+        ],
+        "description": "Triggers the specified command with the given argument."
+    },  
+
+    "menu.command_box_is_open": {
+        "prefix": ["menu.command_box_is_open"],
+        "body": [
+          "menu.command_box_is_open()"
+        ],
+        "description": "Returns true if the command box is open, otherwise false."
+    },  
+
+    "menu.command_box_get_dimensions": {
+        "prefix": ["menu.command_box_get_dimensions"],
+        "body": [
+          "menu.command_box_get_dimensions()"
+        ],
+        "description": "Returns x, y, width, & height of the command box."
+    },  
+
+    "menu.is_in_screenshot_mode": {
+        "prefix": ["menu.is_in_screenshot_mode"],
+        "body": [
+          "menu.is_in_screenshot_mode()"
+        ],
+        "description": "Returns true if the menu is in screenshot mode, otherwise false."
+    },
+    //Players Functions
+    "players.add_command_hook": {
+        "prefix": ["players.add_command_hook"],
+        "body": [
+          "players.add_command_hook(callback)"
+        ],
+        "description": "Registers a function to be called when a player should have script features added. Your callback will be called with the player id and player root as arguments."
+      },
+      
+      "players.on_join": {
+        "prefix": ["players.on_join"],
+        "body": [
+          "players.on_join(callback)"
+        ],
+        "description": "Registers a function to be called when a player joins the session. Your callback will be called with the player id as an argument."
+      },
+      
+      "players.on_leave": {
+        "prefix": ["players.on_leave"],
+        "body": [
+          "players.on_leave(callback)"
+        ],
+        "description": "Registers a function to be called when a player leaves the session. Your callback will be called with the player id and name as arguments."
+      },
+      
+      "players.dispatch_on_join": {
+        "prefix": ["players.dispatch_on_join"],
+        "body": [
+          "players.dispatch_on_join()"
+        ],
+        "description": "Calls your join handler(s) for every player that is already in the session."
+      },
+      
+      "players.exists": {
+        "prefix": ["players.exists"],
+        "body": [
+          "players.exists(player_id)"
+        ],
+        "description": "Checks if a player with the given id is in session."
+      },
+      
+      "players.user": {
+        "prefix": ["players.user"],
+        "body": [
+          "players.user()"
+        ],
+        "description": "Alternative to the PLAYER.PLAYER_ID native."
+      },
+      
+      "players.user_ped": {
+        "prefix": ["players.user_ped"],
+        "body": [
+          "players.user_ped()"
+        ],
+        "description": "Alternative to the PLAYER.PLAYER_PED_ID native."
+      },
+      
+      "players.list": {
+        "prefix": ["players.list"],
+        "body": [
+          "players.list(include_user = true, include_friends = true, include_strangers = true)"
+        ],
+        "description": "Returns an index-based table with all matching player ids."
+      },
+      
+      "players.list_only": {
+        "prefix": ["players.list_only"],
+        "body": [
+          "players.list_only(include_user = false, include_friends = false, include_crew_members = false, include_org_members = false)"
+        ],
+        "description": "Returns an index-based table with all matching player ids."
+      },
+      
+      "players.list_except": {
+        "prefix": ["players.list_except"],
+        "body": [
+          "players.list_except(exclude_user = false, exclude_friends = false, exclude_crew_members = false, exclude_org_members = false)"
+        ],
+        "description": "Returns an index-based table with all matching player ids."
+      },
+      
+      "players.get_host": {
+        "prefix": ["players.get_host"],
+        "body": [
+          "players.get_host()"
+        ],
+        "description": "Returns the host player id."
+      },
+      
+      "players.get_script_host": {
+        "prefix": ["players.get_script_host"],
+        "body": [
+          "players.get_script_host()"
+        ],
+        "description": "Returns the script host player id."
+      },
+      
+      "players.get_focused": {
+        "prefix": ["players.get_focused"],
+        "body": [
+          "players.get_focused()"
+        ],
+        "description": "Returns an index-based table containing the ids of all players focused in the menu."
+      },
+      
+      "players.get_name": {
+        "prefix": ["players.get_name"],
+        "body": [
+          "players.get_name(player_id)"
+        ],
+        "description": "Returns the name of the player with the given id."
+      },
+}   
